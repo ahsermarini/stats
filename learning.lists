@@ -1,0 +1,57 @@
+# questions for exam will be basics in r the first topic - second part will be for a written test
+# Lists creation - several dimensions of any data type
+# least flexible and most powerful data sets in R can contain matrix, dataframes, lists, etc. Several dimensions.
+
+student <- "piero"
+scores <- c(27, 29, 25, 30)
+is_enrolled <- FALSE
+my_list <- list(student,
+                scores,
+                is_enrolled) # dont name it list bc it is the function or start it with numbers
+my_list
+# first component is a charcter vector - second is numberical vector - third logical vector
+# double square brackets list 
+class(my_list)
+typeof(my_list)
+str(my_list)
+length(my_list)
+# atomiv vectors and list vectors not on exam lists are one type of vector and with atomic vec make a whole set
+# character vector is where you would store names
+list_names <- c("student",
+                "scores",
+                "enrollment")
+list_names
+my_list
+names(my_list) <- list_names
+my_list
+str(my_list)
+names(my_list) <- NULL # deletes the names you assigned
+
+my_list <- list(student = student,
+                scores = scores,
+                enrollment = is_enrolled)
+my_list
+my_list[1] # accessing the list not the character
+class(my_list[1])
+class(my_list[[1]])  #double square brackets means that it will be accessing the component from a list you must use double square
+str(my_list[1])
+str(my_list["student"])
+str(my_list[["student"]])
+my_list$student
+class(my_list$student)
+
+my_list[c(1,3)]
+my_list[c("student", "enrollment")]
+my_list[[c(1,3)] # does not work error becasue you can only use single square brackets to extact a subset from a list use dollar
+scores <- c(first_test = 27,
+            second_test = 29,
+            third_test = 25,
+            fourth_test = 30)
+is_enrolled <- FALSE
+my_list <- list(student = student,
+                scores = scores,
+                enrollment = is_enrolled)
+str(my_list)
+my_list[[c(2,4)]]
+my_list[[c("scores", "fourth_test")]] #can find with indicies or names
+my_list[[2]]
