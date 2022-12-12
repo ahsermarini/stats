@@ -1,0 +1,52 @@
+vec <- 1:9
+vec
+sum(vec)
+m <- matrix(vec, nrow = 3)
+m
+sum(m)
+colnames(m) <- c("spc1",
+                 "spce2",
+                 "spce3")
+rownames(m) <- c("cave1",
+                 "cave2",
+                 "cave3")
+m
+colSums(m)
+rowSums(m)
+
+mean(vec)
+mean(m)
+ColMeans(m)
+colMeans(m)
+sd(m)
+# standard deviation
+sd(m[1,])
+summary(vec)
+summary(m)
+t(m) #t stands for
+summary(t(m))
+
+# Factors - qualitative
+vec <- c("Tree", "Grass", "Forb", "Grass", "Tree")
+class(vec) # this is a charcter based vector
+fct <- factor(vec) # make into a factor
+fct
+# levels are the modality - all the possible categories work with factors only when you have a limited value
+# we converterd the values into factors within R so they do not have quotes anymore
+
+vec <- c("Tree", "Grass", "Forb", "Grass", "Tree")
+lev <- c("Tree", "Grass", "Forb", "Liana") # liana did not have any data and therefore you had it to the levels
+fct <- factor(vec, levels = lev)
+fct
+summary(fct)
+# absolute frequencies of how many times
+
+ vec <- c("Low Temp", "Mid Temp", "High Temp", "Mid Temp", "Low Temp")
+vec 
+factor(vec) 
+factor(vec, ordered = TRUE)
+lev <- c("Low Temp", "Mid Temp", "High Temp")
+factor(vec,
+       levels = lev,
+       ordered = TRUE)
+levels(fct)
