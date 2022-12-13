@@ -1,0 +1,51 @@
+# the exam will be focused on general r varaibles, datastructures, programming
+# indexing lists the most flexible data structures in r and are a type of vectors
+# lists can contain all data types
+student <- "piero"
+scores <- c(first_test = 26,
+            second_test = 29,
+            third_test = 25,
+            fourth_test = 30)
+is_enrolled <- FALSE
+my_list <- list(student = student,
+                scores = scores,
+                enrollment = is_enrolled)
+my_list[[1]]
+my_list$student
+my_list[1:2]
+my_list[[2]]
+my_list[[c(2,1)]]
+str(my_list)
+# indexing lists
+my_list[["scores"]][["first_test"]]
+my_list[["scores"]][["first_test"]] <- 27 # change a data point
+my_list
+my_list[["course"]]
+my_list[["course"]] <- "GCE"
+my_list
+my_list$internship <- FALSE #when using dollar you dont have to use quote
+my_list
+length(my_list)
+str(my_list)
+my_list
+my_list[[8]] <- "B2" # this adds to youe list and is empty but adds that place holder for that 
+my_list
+names(my_list)[8]
+names(my_list)[8] <- "english certification"
+names(my_list)
+my_list[[6]] <- NULL
+str(my_list)
+my_list <- my_list[-6] # use negative indecies to get rid of value when using negative indcies must use single square brackets
+str(my_list)
+
+list1 <- list(a1 = 1:10,
+              b1 = LETTERS[1:3])
+list1
+list2 <- list(a1 = c(2.2, 3.1),
+              b1 = c(FALSE, TRUE))
+c(list1 = list1, list2 = list2)
+# attending atomic vectors take to vectors and all values of the first vector followed by all the vectors you want
+list(list1, list2)
+list(list1 = list1, list2 = list2)
+str(c(list1 = list1, list2 = list2))
+str(list(list1 = list1, list2 = list2)) # list of two components 
