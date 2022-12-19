@@ -1,0 +1,63 @@
+install.packages("palmerpenguins")
+library(palmerpenguins)
+library(tidyverse)
+
+data(penguins)
+
+head(penguins)
+head(penguins, n = 10)
+
+glimpse(penguins)
+?penguins # tells you about the pacakge
+# scales, gemoetry all depend on the type of graph or scatter plot or whaterver you want we can mix vizulasation 
+
+penguins %>% # pipe it ctrl + shft + M
+
+penguins %>%
+ggplot() # this is what it does it puts it into the next line of code for you
+ggplot(penguins)
+# nothing showed up because R needs us to define the data 
+
+penguins %>%
+ggplot(aes(x = flipper_length_mm, y = body_mass_g)) # aes is asethetics for x and y axis
+
+
+# labs is like legos - theme can change graphical parameters
+ # element_blank deletes element_rect rect)angular 
+
+p <- penguins %>%
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point() +
+  labs(
+    title = "Penguin Size, Palmer Station LTER",
+    subtitle = "Flipper length and body mass for Adelie, Chinstrap and Gentoo Penguins",
+    x = "Flipper length (mm)",
+    y = "Body mass (g)") +
+    theme(panel.background = element_rect(fill = "white"))
+    
+theme_classic() # makes a standard graph
+
+p +
+geom_point(aes(color = species)) +
+scale_color_manual(values = c("darkorange",
+                              "purple",
+                              "cyan4"),
+                              name = "Species") +
+  theme_classic()
+  
+  p +
+geom_point(aes(color = species)) +
+scale_color_brewer(values = c("darkorange",
+                              "purple",
+                              "cyan4"),
+                              name = "Species") +
+                              
+                             
+# brewer palettes the middle ones are for categorical ones, the top is continous variables, the bottom is divergent palette with pos or neg
+
+                             
+                              
+ 
+
+    
+    
