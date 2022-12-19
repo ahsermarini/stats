@@ -47,15 +47,20 @@ scale_color_manual(values = c("darkorange",
   
   p +
 geom_point(aes(color = species)) +
-scale_color_brewer(values = c("darkorange",
-                              "purple",
-                              "cyan4"),
+scale_color_brewer(palette = c("Set2"),
                               name = "Species") +
-                              
-                             
+                               theme_classic()
+                                                      
 # brewer palettes the middle ones are for categorical ones, the top is continous variables, the bottom is divergent palette with pos or neg
+theme(panel.background = element_rect(fi
 
-                             
+penguins %>%
+ ggplot() +
+ geom_bar(aes(x = species))
+ 
+ penguins %>%
+ ggplot() +
+ geom_histogram(aes(x = body_mass_g), binwidth = 250))
                               
  
 
