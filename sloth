@@ -1,0 +1,68 @@
+# Install packages
+install.packages("tidyverse")
+install.packages("GGally")
+
+# Load packages
+library(tidyverse)
+library(GGally)
+
+# Now create a data directory that can be reproducible
+dat <- read_csv("data/sloth_data.csv")
+
+# Check the dataframe
+dim(dat)
+names(dat)
+nrow(dat)
+ncol(dat)
+glimpse(dat)
+str(dat)
+
+# Remove "Index" column
+dat <- dat[-1]
+
+# Let's look at the endangered column to see the three status
+dat %>% 
+  dplyr::select(endangered)
+
+# Rename columns to clarify their content
+dat <- dat %>%
+  rename(main_species = `specie`,
+         sub_species = `sub_specie`,
+         endangerment_status = `endangered`)
+
+#
+head(dat)
+tail(dat)
+summary(dat)
+
+# Organize rows by endangerement, from least to most concerning
+endangerment_levels <- c("least_concern", "vulnerable", "critically_endangered")
+dat<- dat %>%
+  mutate(endangerment_status = factor(endangerment_status, levels = endangerment_levels)) %>%
+  arrange(endangerment_status)
+
+# Cross-check
+dat
+
+#print(dat, n=5000)#
+
+# Sort columns by qualitative first and then quantitative second
+dat <- dat[, c(4, 5, 2, 3, 7, 1, 6)]
+dat
+
+# Check for missing values
+is.na(dat)
+
+# Double-check
+which(is.na(dat))
+
+# Check for duplicates
+duplicated(dat)
+which(duplicated(dat))
+
+# Make quantitative data have the same decimal place
+dat <- dat %>%
+  mutate(across(where(is.numeric), ~ round(., 1)))
+dat
+
+graph_1 <- ggplot(dat, aes(x = sub_species, y = endangerment_status))
