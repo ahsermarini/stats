@@ -1,0 +1,54 @@
+# Install packages
+install.packages("tidyverse")
+install.packages("GGally")
+
+# Load packages
+library(tidyverse)
+library(GGally)
+
+# Create a data directory that can be reproducible
+dat <- read_csv("data/sloth_data.csv")
+
+#view the characteristic of the dataset such as variable types
+glimpse(dat)
+
+#view the number of columns in the dataset
+ncol(dat)
+
+#view the number of rows in the dataset
+nrow(dat)
+
+#another way to summarize the dataset
+str(dat)
+
+#show the table version of the data set
+tibble(dat)
+
+#the index column is not needed. Remove the index column
+#and assign a new name to the new data set
+dat <- select(data, -X)
+
+#confirm that the Index column has been removed
+glimpse(dat)
+
+#rename some of the variables
+dat <- rename(sloth_data, "endangered_status" = "endangered",
+                     "main_species" = "specie", "sub_species" = "sub_specie")
+
+# Cross-check
+glimpse(dat)
+
+# Sort columns by qualitative first and then quantitative second
+dat <- dat[, c(4, 5, 2, 3, 7, 1, 6)]
+glimpse(dat)
+
+# Check for missing values
+is.na(dat)
+
+# Double-check
+which(is.na(dat))
+
+# Check for duplicates
+duplicated(dat)
+which(duplicated(dat))
+
