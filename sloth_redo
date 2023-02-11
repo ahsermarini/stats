@@ -79,6 +79,19 @@ data_2t <- dat %>%
 
 data_2t
 
+#make scatter plot for two-toed species length and weight
+graph_3a <- data_2t %>% 
+  ggplot(aes(x = total_length_cm,
+             y = weight_kg,
+             color = sub_species)) + geom_point() +
+  labs(
+    title = "Sloths" ,
+    subtitle = "More Sloths" , 
+    x = "Total Length" ,
+    y = "Weight"
+  )
+
 #to filter out the dataset for only three toed-species
 data_3t <- dat %>%
   filter(main_species == "three_toed")
+  
