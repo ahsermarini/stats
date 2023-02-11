@@ -52,12 +52,12 @@ which(is.na(dat))
 duplicated(dat)
 which(duplicated(dat))
 
-#stacked bar chart
+# Stacked bar chart
 graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) + 
   geom_bar(sub_species = 'stack')
 
 
-# Box
+# Box plot graph
 graph_2 <- dat %>% 
   ggplot() +
   geom_boxplot(aes(x = main_species,
