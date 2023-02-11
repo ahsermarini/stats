@@ -70,7 +70,13 @@ graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) +
 graph_2 <- dat %>% 
   ggplot() +
   geom_boxplot(aes(x = main_species,
-                   y = claw_length))
+                   y = claw_length)) +
+    labs(
+    title = "Claw Length Comparison of Main Species" ,
+    subtitle = "Two-Toed Sloth vs. Three-Toed Sloth" , 
+    x = "Main Species" ,
+    y = "Claw Length (cm)"
+  )
                    
 # To filter out the dataset for only two-species
 data_2t <- dat %>%
