@@ -58,6 +58,9 @@ which(is.na(dat))
 duplicated(dat)
 which(duplicated(dat))
 
+# We want to check the absolute frequency of the observations in the endangered_status column
+table(dat$endangered_status)
+
 # Stacked bar chart
 graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) + 
   geom_bar(sub_species = 'stack')
@@ -69,7 +72,7 @@ graph_2 <- dat %>%
   geom_boxplot(aes(x = main_species,
                    y = claw_length))
                    
-#to filter out the dataset for only two-species
+# To filter out the dataset for only two-species
 data_2t <- dat %>%
   filter(main_species == "two_toed")
 
