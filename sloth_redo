@@ -56,7 +56,7 @@ which(duplicated(dat))
 ggplot(sloth_data, aes(fill = sub_species, x = endangered_status)) + 
   geom_bar(sub_species = 'stack')
 
-# Box
+# Box plot
 graph_2 <- dat %>% 
   ggplot() +
   geom_boxplot(aes(x = main_species,
