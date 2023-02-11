@@ -107,10 +107,10 @@ graph_3a <- data_2t %>%
              y = weight_kg,
              color = sub_species)) + geom_point() +
   labs(
-    title = "Sloths" ,
-    subtitle = "More Sloths" , 
-    x = "Total Length" ,
-    y = "Weight"
+    title = "Two-Toed Sloth Species Length & Weight Distribuition" ,
+    subtitle = "Comparing Hoffman vs. Linnaeus" , 
+    x = "Total Length (cm)" ,
+    y = "Weight (kg)"
   )
 
  
@@ -122,9 +122,9 @@ graph_3a <- data_2t %>%
              geom_point(color = "black", pch = 21, size = 2, alpha = .5) +
              scale_y_continuous(breaks = seq(from = 0, to = 9, by = .5)) +
   labs(
-    title = "Sloths" ,
-    subtitle = "More Sloths" , 
-    x = "Total Length" ,
-    y = "Weight"
+    title = "Three-Toed Sloth Species Length & Weight Distribuition" ,
+    subtitle = "Comparison of Three-Toed Sloth Species" , 
+    x = "Total Length (cm)" ,
+    y = "Weight (kg)"
   )
   
