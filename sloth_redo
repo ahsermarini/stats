@@ -38,6 +38,12 @@ dat <- rename(sloth_data, "endangered_status" = "endangered",
 # Cross-check
 glimpse(dat)
 
+# Organize rows by endangerement, from least to most concerning
+endangerment_levels <- c("least_concern", "vulnerable", "critically_endangered")
+dat<- dat %>%
+  mutate(endangerment_status = factor(endangerment_status, levels = endangerment_levels)) %>%
+  arrange(endangerment_status)
+
 # Sort columns by qualitative first and then quantitative second
 dat <- dat[, c(4, 5, 2, 3, 7, 1, 6)]
 glimpse(dat)
