@@ -63,6 +63,25 @@ graph_2 <- dat %>%
   geom_boxplot(aes(x = main_species,
                    y = claw_length))
                    
+#to filter out the dataset for only two-species
+data_2t <- dat %>%
+  filter(main_species == "two_toed")
+
+#check the new dataframe to confirm
+glimpse(data_2t)
+
+#to filter out the dataset for only three toed-species
+data_3t <- dat %>%
+  filter(main_species == "three_toed")
+
+#check the new dataframe to confirm
+glimpse(data_3t)
+
+# to get a summary of the central tendencies for each main species and their claw lengths
+summary(data_2t$claw_length_cm)
+summary(data_3t$claw_length_cm)
+
+                  
 #add an additional column to the dataset by combining the size and tail length columns
 total_length_cm <- dat$size_cm + dat$tail_length_cm
 
@@ -72,12 +91,6 @@ total_length_cm
 dat <- cbind(dat, total_length_cm)
 
 glimpse(dat)
-
-#to filter out the dataset for only two-species
-data_2t <- dat %>%
-  filter(main_species == "two_toed")
-
-data_2t
 
 #make scatter plot for two-toed species length and weight
 graph_3a <- data_2t %>% 
@@ -91,10 +104,7 @@ graph_3a <- data_2t %>%
     y = "Weight"
   )
 
-#to filter out the dataset for only three toed-species
-data_3t <- dat %>%
-  filter(main_species == "three_toed")
-  
+ 
   #make scatter plot for three-toed species length and weight
   graph_3b <- data_3t %>% 
   ggplot(aes(x = total_length_cm,
