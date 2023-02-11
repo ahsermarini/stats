@@ -62,3 +62,13 @@ graph_2 <- dat %>%
   ggplot() +
   geom_boxplot(aes(x = main_species,
                    y = claw_length))
+                   
+#add an additional column to the dataset by combining the size and tail length columns
+total_length_cm <- dat$size_cm + dat$tail_length_cm
+
+total_length_cm
+
+#add the new column to the dataset
+dat <- cbind(dat, total_length_cm)
+
+glimpse(dat)
