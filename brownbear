@@ -1,0 +1,125 @@
+# install.packages("GGally")
+
+# Load packages ----
+
+library(tidyverse)
+library(GGally)
+
+# Load data ----
+
+dat <- read_csv("data/global_brownbear_attacks.csv")
+
+# Inspect data set ----
+
+dim(dat)
+names(dat)
+#nrow(dat)
+#ncol(dat)
+glimpse(dat)
+#str(dat)
+
+# Inspect anomalies ----
+
+unique(dat$NumberofBrownBears)
+unique(dat$`BrownBearDensity(bears/1000km2)`)
+
+which(dat$NumberofBrownBears == "unknown")
+which(dat$`BrownBearDensity(bears/1000km2)` == "unknown")
+
+dat[8, ]
+
+# Remove missing data
+
+dat <- dat %>% 
+  rename(country = `Country/State`) %>% 
+  filter(country != "Iran")
+
+glimpse(dat)
+
+# Fix wrong data types ----
+
+dat <- dat %>% 
+  mutate(NumberofBrownBears = as.integer(NumberofBrownBears),
+         `BrownBearDensity(bears/1000km2)` = as.numeric(`BrownBearDensity(bears/1000km2)`))
+
+glimpse(dat)
+
+# Further fix data ----
+
+dat <- dat %>% 
+  rename(n_attacks = `NumberofAttacks(2000–2015)`,
+         n_fatalities = `NumberofFatalities(2000–2015)`,
+         n_bears = NumberofBrownBears,
+         range = `BrownBearRange(km2)`,
+         human_density = `HumanDensity(inhabitants/km2)`,
+         bear_density = `BrownBearDensity(bears/1000km2)`) %>% 
+  mutate(n_attacks = as.integer(n_attacks),
+         n_fatalities = as.integer(n_fatalities))
+
+glimpse(dat)
+
+# Exploratory Data Analysis ----
+
+## Summary statistics ----
+
+head(dat)
+summary(dat)
+
+## Data visualization ----
+
+### Univariate distributions ----
+
+# ggplot(data = dat) +
+#   geom_histogram(aes(x = n_fatalities))
+
+ggplot(data = dat) +
+  geom_bar(aes(x = n_fatalities)) +
+  scale_x_continuous(breaks = 0:11) +
+  scale_y_continuous(breaks = 1:9) +
+  labs(y = "Number of countries",
+       x = "Number of fatalities") +
+  theme_classic()
+
+# ggplot(data = dat) +
+#   geom_histogram(aes(x = n_bears))
+# 
+# ggplot(data = dat) +
+#   geom_histogram(aes(x = log(n_bears)))
+
+ggplot(data = dat) +
+  geom_density(aes(x = log10(n_bears))) +
+  labs(y = "Kernel density estimate",
+       x = "Log10(Number of bears)") +
+  theme_classic()
+
+ggplot(data = dat) +
+  geom_density(aes(x = bear_density)) +
+  labs(y = "Kernel density estimate",
+       x = "Bear density (bears / 1000km²)") +
+  theme_classic()
+
+ggplot(data = dat) +
+  geom_density(aes(x = human_density)) +
+  labs(y = "Kernel density estimate",
+       x = "Human density (inhabitants / km²)") +
+  theme_classic()
+
+### Bivariate distributions ----
+
+ggplot(data = dat) +
+  geom_point(aes(x = log10(n_bears),
+                 y = n_fatalities),
+             alpha = 0.3)
+
+ggplot(data = dat) +
+  geom_jitter(aes(x = log10(n_bears),
+                  y = n_fatalities),
+              alpha = 0.3) +
+  geom_smooth(aes(x = log10(n_bears),
+                  y = n_fatalities))
+
+## Extra ----
+
+dat %>% 
+  select(-country) %>% 
+  ggpairs()
