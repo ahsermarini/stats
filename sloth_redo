@@ -78,3 +78,7 @@ data_2t <- dat %>%
   filter(main_species == "two_toed")
 
 data_2t
+
+#to filter out the dataset for only three toed-species
+data_3t <- dat %>%
+  filter(main_species == "three_toed")
