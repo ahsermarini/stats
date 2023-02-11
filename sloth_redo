@@ -72,3 +72,9 @@ total_length_cm
 dat <- cbind(dat, total_length_cm)
 
 glimpse(dat)
+
+#to filter out the dataset for only two-species
+data_2t <- dat %>%
+  filter(main_species == "two_toed")
+
+data_2t
