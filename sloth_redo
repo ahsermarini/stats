@@ -91,7 +91,8 @@ graph_2 <- dat %>%
     y = "Claw Length (cm)",
     fill = "Main Species") +
     scale_x_discrete(labels = c("Three-Toed", "Two-Toed")) +
-    scale_fill_discrete(labels = c("Three-Toed", "Two-Toed"))
+    scale_fill_manual(labels = c("Three-Toed", "Two-Toed"),
+                    values = c("dodgerblue3", "brown2"))
                    
 # To filter out the dataset for only two-species
 data_2t <- dat %>%
@@ -147,9 +148,6 @@ graph_3a <- data_2t %>%
     subtitle = "Comparison of Three-Toed Sloth Species" , 
     x = "Total Length (cm)" ,
     y = "Weight (kg)") +
-    scale_fill_manual(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
-                                 "Pale-Throated Sloth", "Pygmy Three-Toed Sloth")
-                                 values = c("dodgerblue3","lightskyblue1",
-                                 "royalblue4", "cyan3"))
+    scale_fill_manual(values = c("dodgerblue3","lightskyblue1",
+    "royalblue4", "cyan3"))
   
-,
