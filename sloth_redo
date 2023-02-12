@@ -82,7 +82,7 @@ graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) +
 graph_2 <- dat %>% 
   ggplot() +
   geom_boxplot(aes(x = main_species,
-                   y = claw_length,
+                   y = claw_length_cm,
                    fill = main_species)) +
     labs(
     title = "Claw Length Comparison of Main Species" ,
