@@ -9,23 +9,23 @@ library(GGally)
 # Create a data directory that can be reproducible
 dat <- read_csv("data/sloth_data.csv")
 
-#view the characteristic of the dataset such as variable types
+# View the characteristic of the dataset such as variable types
 glimpse(dat)
 
-#view the number of columns in the dataset
+# View the number of columns in the dataset
 ncol(dat)
 
-#view the number of rows in the dataset
+# View the number of rows in the dataset
 nrow(dat)
 
-#another way to summarize the dataset
+# Another way to summarize the dataset
 str(dat)
 
-#show the table version of the data set
+# Show the table version of the data set
 tibble(dat)
 
-#the index column is not needed. Remove the index column
-#and assign a new name to the new data set
+# The index column is not needed. Remove the index column
+# and assign a new name to the new data set
 dat <- select(data, -X)
 
 #confirm that the Index column has been removed
