@@ -74,8 +74,7 @@ graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) +
   scale_fill_discrete(labels = c("Brown-Throated Sloth", "Hoffman's Two-Toed Sloth",
                                  "Linnaeus's Two-Toed Sloth", "Maned Three-Toed Sloth",
                                  "Pale-Throated Sloth", "Pygmy Three-Toed Sloth")) +
-                                  scale_fill_manual(values = c("dodgerblue3", "tomato1", "gold2", "orchid4", "palevioletred",
-                                  "lightskyblue1", "royalblue4", "cyan3"))
+                                  scale_fill_manual(values = c("dodgerblue3", "tomato1", "gold2", "orchid4", "seagreen3", hotpink1"))
 
 
 # Box plot graph
