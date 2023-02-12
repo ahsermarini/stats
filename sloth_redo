@@ -77,7 +77,7 @@ graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) +
                                   scale_fill_manual(values = c("dodgerblue3", "tomato1", "gold2", "orchid4", "seagreen3", hotpink1"))
 
 
-# Box plot graph
+# Box plot graph comparing the claw length between the two-toed sloth and the three-toed sloth.
 graph_2 <- dat %>% 
   ggplot() +
   geom_boxplot(aes(x = main_species,
@@ -93,14 +93,14 @@ graph_2 <- dat %>%
     scale_fill_manual(labels = c("Three-Toed", "Two-Toed"),
                     values = c("dodgerblue3", "brown2"))
                    
-# To filter out the dataset for only two-species
+# To filter out the dataset for only the two-toed sloth
 data_2t <- dat %>%
   filter(main_species == "two_toed")
 
-#check the new dataframe to confirm
+# Check the new dataframe to confirm
 glimpse(data_2t)
 
-#to filter out the dataset for only three toed-species
+# To filter out the dataset for only three- toed sloth
 data_3t <- dat %>%
   filter(main_species == "three_toed")
 
