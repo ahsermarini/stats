@@ -62,6 +62,7 @@ which(duplicated(dat))
 table(dat$endangered_status)
 
 # Stacked bar chart analyzing the conservation status of sloth subspecies
+# Changing titles, colors, and labels for the bar chart 
 graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) + 
   geom_bar(sub_species = 'stack') +
   labs(
@@ -80,6 +81,7 @@ graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) +
 
 
 # Box plot graph comparing the claw length between the two-toed sloth and the three-toed sloth.
+# Changing titles, colors, and labels for the box plot 
 graph_2 <- dat %>% 
   ggplot() +
   geom_boxplot(aes(x = main_species,
@@ -127,6 +129,7 @@ dat <- cbind(dat, total_length_cm)
 glimpse(dat)
 
 # Scatter plot for two-toed species comparing length and weight
+# Changing titles, colors, and labels for the scatter plot
 graph_3a <- data_2t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
@@ -143,6 +146,7 @@ graph_3a <- data_2t %>%
                     values = c("tomato1", "gold2"))
                    
  # Scatter plot for three-toed species length and weight
+ # Changing titles, colors, and labels for the scatter plot
   graph_3b <- data_3t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
