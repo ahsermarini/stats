@@ -1,5 +1,11 @@
 # R project - Sloth Species and Conservation Stauts Analysis 
-#Group: Antonella Mastropierro, Allison Sermarini, Giulia Lucaccioni
+# Group: Antonella Mastropierro, Allison Sermarini, Giulia Lucaccioni
+
+# Here are the following objectives for the project:
+# What is the number of sloth species that are in each conservation status
+# Which subspecies are most endangered
+# What is the average claw size for each main species and which of the two main species have the longer claws on average
+# What is the relationship between the subspecies and weight/size distribuition for for each of the two main species
 
 # Install packages
 install.packages("tidyverse")
