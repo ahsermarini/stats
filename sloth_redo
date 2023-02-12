@@ -136,7 +136,7 @@ graph_3a <- data_2t %>%
     fill = "Sub Species") +
         scale_fill_manual(labels = c("Hoffman's Two-Toed Sloth",
                                  "Linnaeus's Two-Toed Sloth"),
-                                 values = c("orchid4", "palevioletred"))
+                                 values = c("tomato1", "sandybrown"))
      
   #make scatter plot for three-toed species length and weight
   graph_3b <- data_3t %>% 
