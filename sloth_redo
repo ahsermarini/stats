@@ -127,16 +127,17 @@ glimpse(dat)
 graph_3a <- data_2t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
-             color = sub_species)) + geom_point() +
+             fill = sub_species)) + 
+  geom_point(color = "black", pch = 21, size = 2, alpha = .5) +
   labs(
-    title = "Two-Toed Sloth Species Length & Weight Distribuition" ,
+    title = "Two-Toed Sloth Species Length & Weight Distribution" ,
     subtitle = "Comparing Hoffman vs. Linnaeus" , 
     x = "Total Length (cm)" ,
     y = "Weight (kg)",
-    fill = "Sub Species") +
-        scale_fill_manual(labels = c("Hoffman's Two-Toed Sloth",
-                                 "Linnaeus's Two-Toed Sloth"),
-                                 values = c("tomato1", "sandybrown"))
+    fill = "Subspecies") +
+  scale_fill_manual(labels = c("Hoffman's Two-Toed Sloth",
+                               "Linnaeus's Two-Toed Sloth"), 
+                    values = c("tomato1", "gold2"))
      
   #make scatter plot for three-toed species length and weight
   graph_3b <- data_3t %>% 
@@ -150,7 +151,7 @@ graph_3a <- data_2t %>%
     subtitle = "Comparison of Three-Toed Sloth Species" , 
     x = "Total Length (cm)" ,
     y = "Weight (kg)",
-    fill = "Sub Species") +
+    fill = "Subspecies") +
     scale_fill_manual(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
                                  "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
                                  values = c("dodgerblue3", "orchid4", "seagreen3", "hotpink1"))
