@@ -116,11 +116,13 @@ summary(data_3t$claw_length_cm)
 # Add an additional column to the dataset by combining the size and tail length columns
 total_length_cm <- dat$size_cm + dat$tail_length_cm
 
+# Check new data set data
 total_length_cm
 
 # Add the new column to the dataset
 dat <- cbind(dat, total_length_cm)
 
+# Check for new column in the dataset
 glimpse(dat)
 
 # Scatter plot for two-toed species comparing length and weight
