@@ -154,5 +154,5 @@ graph_3a <- data_2t %>%
     scale_fill_discrete(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
                                  "Pale-Throated Sloth", "Pygmy Three-Toed Sloth")) +
     scale_fill_manual(values = c("dodgerblue3",
-    "lightskyblue1", "royalblue4", "cyan3"))
+    "orchid4", "seagreen3", "hotpink1"))
     
