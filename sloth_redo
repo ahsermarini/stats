@@ -73,7 +73,8 @@ graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) +
   scale_x_discrete(labels = c("Critically Endangered", "Least Concern", "Vulnerable")) +
   scale_fill_manual(labels = c("Brown-Throated Sloth", "Hoffman's Two-Toed Sloth",
                                "Linnaeus's Two-Toed Sloth", "Maned Three-Toed Sloth",
-                               "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"), values = c("dodgerblue3", "tomato1", "gold2",
+                               "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
+                               values = c("dodgerblue3", "tomato1", "gold2",
                                             "orchid4", "seagreen3","hotpink1"))
                                             
 
