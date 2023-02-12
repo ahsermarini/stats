@@ -16,63 +16,95 @@ library(tidyverse)
 library(GGally)
 
 # Create a data directory that can be reproducible
-dat <- read_csv("data/sloth_data.csv")
+sloth_data <- read_csv("data/sloth_data.csv")
 
 # View the characteristic of the dataset such as variable types
-glimpse(dat)
+glimpse(sloth_data)
 
 # View the number of columns in the dataset
-ncol(dat)
+ncol(sloth_data)
 
 # View the number of rows in the dataset
-nrow(dat)
+nrow(sloth_data)
 
 # Another way to summarize the dataset
+str(sloth_data)
+
+# Show the table version of the data set
+tibble(sloth_data)
+
+# The index column is not needed. Remove the index column
+# and assign a new name to the new data set
+sloth_data <- sloth_data[-1]
+
+# Confirm that the Index column has been removed
+glimpse(sloth_data)
+
+# Rename some of the variables
+sloth_data <- rename(sloth_data, "endangered_status" = "endangered",
+              "main_species" = "specie", "sub_species" = "sub_specie")
+
+# Let's confirm the changes
+glimpse(sloth_data)
+
+# We want to organize the rows by endangerment status from least concerning to critically endangered
+# First, we need to create a shortcut for the order that we will input
+endangerment_levels <- c("least_concern", "vulnerable", "critically_endangered")
+
+# Now that the shortcut is created, we can reorder the data set by endangerment status
+sloth_data <- sloth_data %>%
+  mutate(endangered_status = factor(endangered_status, levels = endangerment_levels)) %>%
+  arrange(endangered_status)
+
+# Let's confirm the changes
+glimpse(sloth_data)
+
+# Sort columns by qualitative first and then quantitative second
+sloth_data <- sloth_data[, c(4, 5, 2, 3, 7, 1, 6)]
+
+# Let's confirm the changes
+glimpse(sloth_data)
+
+# Check for missing values
+is.na(sloth_data)
+
+# We can double-check for missing values
+which(is.na(sloth_data))
+
+# No missing values were found
+
+# Check for duplicates
+duplicated(sloth_data)
+
+# We can double-check for duplicates
+which(duplicated(sloth_data))
+
+# No duplicates were found
+
+# Now that all modifications are complete, we want to rename the modified data set to differentiate from the original
+dat <- sloth_data
+
+#Now that modified data set is renamed, let's check its characteristics to confirm
+glimpse(dat)
+
+# View the number of columns in the data set
+ncol(dat)
+
+# View the number of rows in the data set
+nrow(dat)
+
+# Another way to summarize the data set
 str(dat)
 
 # Show the table version of the data set
 tibble(dat)
-
-# The index column is not needed. Remove the index column
-# and assign a new name to the new data set
-dat <- select(data, -X)
-
-# Confirm that the Index column has been removed
-glimpse(dat)
-
-# Rename some of the variables
-dat <- rename(sloth_data, "endangered_status" = "endangered",
-                     "main_species" = "specie", "sub_species" = "sub_specie")
-
-# Cross-check
-glimpse(dat)
-
-# Organize rows by endangerement, from least to most concerning
-endangerment_levels <- c("least_concern", "vulnerable", "critically_endangered")
-dat<- dat %>%
-  mutate(endangerment_status = factor(endangerment_status, levels = endangerment_levels)) %>%
-  arrange(endangerment_status)
-
-# Sort columns by qualitative first and then quantitative second
-dat <- dat[, c(4, 5, 2, 3, 7, 1, 6)]
-glimpse(dat)
-
-# Check for missing values
-is.na(dat)
-
-# Double-check
-which(is.na(dat))
-
-# Check for duplicates
-duplicated(dat)
-which(duplicated(dat))
 
 # We want to check the absolute frequency of the observations in the endangered_status column
 table(dat$endangered_status)
 
 # Stacked bar chart analyzing the conservation status of sloth subspecies
 # Changing titles, colors, and labels for the bar chart 
-graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) + 
+ggplot(dat, aes(fill = sub_species, x = endangered_status)) + 
   geom_bar(sub_species = 'stack') +
   labs(
     title = "Endangered Status of Sloth Sub-Species" ,
@@ -84,19 +116,24 @@ graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) +
   scale_fill_manual(labels = c("Brown-Throated Sloth", "Hoffman's Two-Toed Sloth",
                                "Linnaeus's Two-Toed Sloth", "Maned Three-Toed Sloth",
                                "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
-                               values = c("dodgerblue3", "tomato1", "gold2",
+                    values = c("dodgerblue3", "tomato1", "gold2",
                                             "orchid4", "seagreen3","hotpink1"))
                                             
+# Save the graph
+ggsave("Endangered_Status_Bar_Chart.png", width = 10, height = 10)
+
+# Close the graph
+dev.off()
 
 
 # Box plot graph comparing the claw length between the two-toed sloth and the three-toed sloth.
 # Changing titles, colors, and labels for the box plot 
-graph_2 <- dat %>% 
+dat %>% 
   ggplot() +
   geom_boxplot(aes(x = main_species,
                    y = claw_length_cm,
                    fill = main_species)) +
-     labs(
+  labs(
     title = "Claw Length Comparison of Main Species" ,
     subtitle = "Two-Toed Sloth vs. Three-Toed Sloth" , 
     x = "Main Species" ,
@@ -105,8 +142,30 @@ graph_2 <- dat %>%
   scale_x_discrete(labels = c("Three-Toed Sloth", "Two-Toed Sloth")) +
   scale_fill_manual(labels = c("Three-Toed Sloth", "Two-Toed Sloth"),
                     values = c("dodgerblue3", "brown2"))
-                   
-# To filter out the dataset for only the two-toed sloth species
+
+# Save the graph
+ggsave("Claw_Length_Boxplot.png", width = 10, height = 10)
+
+# Close the graph
+dev.off()
+
+# To get a summary of the central tendencies for each main species and their claw lengths
+summary(data_2t$claw_length_cm)
+summary(data_3t$claw_length_cm)
+
+# Add an additional column to the dataset by combining the size and tail length columns
+total_length_cm <- dat$size_cm + dat$tail_length_cm
+
+# Confirm the sum of the two variables
+total_length_cm
+
+# Add the new column to the dataset
+dat <- cbind(dat, total_length_cm)
+
+# Check for new column in the dataset
+glimpse(dat)
+
+# To filter out the data set for only the two-toed sloth species
 data_2t <- dat %>%
   filter(main_species == "two_toed")
 
@@ -120,26 +179,9 @@ data_3t <- dat %>%
 # Check the new dataframe to confirm
 glimpse(data_3t)
 
-# To get a summary of the central tendencies for each main species and their claw lengths
-summary(data_2t$claw_length_cm)
-summary(data_3t$claw_length_cm)
-
-                  
-# Add an additional column to the dataset by combining the size and tail length columns
-total_length_cm <- dat$size_cm + dat$tail_length_cm
-
-# Check new data set data
-total_length_cm
-
-# Add the new column to the dataset
-dat <- cbind(dat, total_length_cm)
-
-# Check for new column in the dataset
-glimpse(dat)
-
 # Scatter plot for two-toed species comparing length and weight
 # Changing titles, colors, and labels for the scatter plot
-graph_3a <- data_2t %>% 
+data_2t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
              fill = sub_species)) + 
@@ -153,10 +195,16 @@ graph_3a <- data_2t %>%
   scale_fill_manual(labels = c("Hoffman's Two-Toed Sloth",
                                "Linnaeus's Two-Toed Sloth"), 
                     values = c("tomato1", "gold2"))
-                   
- # Scatter plot for three-toed species length and weight
- # Changing titles, colors, and labels for the scatter plot
-  graph_3b <- data_3t %>% 
+
+# Save the graph
+ggsave("Two_Toed_Sloth_Species_LW.png", width = 15, height = 7)
+
+# Close the graph
+dev.off()
+
+# Scatter plot for three-toed species length and weight
+# Changing titles, colors, and labels for the scatter plot
+data_3t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
              fill = sub_species)) + 
@@ -171,4 +219,10 @@ graph_3a <- data_2t %>%
   scale_fill_manual(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
                                "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
                     values = c("dodgerblue3", "orchid4", "seagreen3", "hotpink1"))
-    
+
+# Save the graph
+ggsave("Three_Toed_Sloth_Species_LW.png", width = 15, height = 7)
+
+# Close the graph
+dev.off()
+
