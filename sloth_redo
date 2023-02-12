@@ -3,9 +3,9 @@
 
 # Here are the following objectives for the project:
 # What is the number of sloth species that are in each conservation status
-# Which subspecies are most endangered
+# Which subspecies are the most endangered
 # What is the average claw size for each main species and which of the two main species have the longer claws on average
-# What is the relationship between the subspecies and weight/size distribuition for for each of the two main species
+# What is the relationship between the subspecies and weight/size distribution for for each of the two main species
 
 # Install packages
 install.packages("tidyverse")
@@ -99,26 +99,39 @@ str(dat)
 # Show the table version of the data set
 tibble(dat)
 
-# We want to check the absolute frequency of the observations in the endangered_status column
-table(dat$endangered_status)
-
 # Stacked bar chart analyzing the conservation status of sloth subspecies
 # Changing titles, colors, and labels for the bar chart 
 ggplot(dat, aes(fill = sub_species, x = endangered_status)) + 
   geom_bar(sub_species = 'stack') +
   labs(
-    title = "Endangered Status of Sloth Sub-Species" ,
+    title = "Endangered Status of Sloth Subspecies" ,
     subtitle = "Number of Observations per Conservation Status" , 
     x = "Endangered Status" ,
     y = "Number of Observations",
     fill = "Subspecies") +
-  scale_x_discrete(labels = c("Critically Endangered", "Least Concern", "Vulnerable")) +
+  scale_x_discrete(labels = c("Least Concern", "Vulnerable", "Critically Endangered")) +
   scale_fill_manual(labels = c("Brown-Throated Sloth", "Hoffman's Two-Toed Sloth",
                                "Linnaeus's Two-Toed Sloth", "Maned Three-Toed Sloth",
                                "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
                     values = c("dodgerblue3", "tomato1", "gold2",
                                             "orchid4", "seagreen3","hotpink1"))
-                                            
+
+# From this graph we are able to determine which subspecies are in which endangered status
+# In the least concern status the following four subspecies are listed: , Hoffman's Two-Toed Sloth
+          # Brown-Throated Sloth
+          # Hoffman's Two-Toed Sloth
+          # Linnaeus's Two-Toed Sloth
+          # Pale-Throated Sloth
+# In the vulnerable status the following subspecies is listed:
+          # Maned Three-Toed Sloth
+# In the critically endangered status the following subspecies is listed:
+          # Pygmy Three-Toed Sloth
+# Both two-toed sloth species are listed as critically endangered, whereas the three-toed species vary
+
+# We want to check the absolute frequency of the observations in the endangered_status column
+table(dat$endangered_status)
+# From the table we see the majority of observations are listed under least concern (4390)
+
 # Save the graph
 ggsave("Endangered_Status_Bar_Chart.png", width = 10, height = 10)
 
@@ -143,15 +156,18 @@ dat %>%
   scale_fill_manual(labels = c("Three-Toed Sloth", "Two-Toed Sloth"),
                     values = c("dodgerblue3", "brown2"))
 
+# From the graph, we can see that the range of the Two-Toed Sloth is larger than the range of the Three-Toed Sloth
+
+# To get a summary of the central tendencies for each main species and their claw lengths
+summary(data_2t$claw_length_cm)
+summary(data_3t$claw_length_cm)
+# Comparing the central tendencies of the main species, the average claw length is about the same
+
 # Save the graph
 ggsave("Claw_Length_Boxplot.png", width = 10, height = 10)
 
 # Close the graph
 dev.off()
-
-# To get a summary of the central tendencies for each main species and their claw lengths
-summary(data_2t$claw_length_cm)
-summary(data_3t$claw_length_cm)
 
 # Add an additional column to the dataset by combining the size and tail length columns
 total_length_cm <- dat$size_cm + dat$tail_length_cm
@@ -196,6 +212,8 @@ data_2t %>%
                                "Linnaeus's Two-Toed Sloth"), 
                     values = c("tomato1", "gold2"))
 
+# From this graph, we can see that there is no significant difference between the length and weight distributions of the two-toed species
+
 # Save the graph
 ggsave("Two_Toed_Sloth_Species_LW.png", width = 15, height = 7)
 
@@ -219,6 +237,16 @@ data_3t %>%
   scale_fill_manual(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
                                "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
                     values = c("dodgerblue3", "orchid4", "seagreen3", "hotpink1"))
+
+# From this graph, we can see that there is no significant difference between the length and weight distributions of the following subspecies:
+          # Brown-Throated Sloth
+          # Maned Three-Toed Sloth
+# From this graph, we can see that there is no significant difference between the length and weight distributions of the following subspecies:
+          # Pale-Throated Sloth
+          # Pygmy Three-Toed Sloth
+# However, when comparing the Brown-Throated and Maned Three-Toed species with the Pale-Throat and Pygmy species,
+# We can observe that all four subspecies have about the same weight
+# However, the Pygmy and Pale-Throated subspecies generally have a smaller size than the Brown-Throated and Maned Three-Throated subspecies
 
 # Save the graph
 ggsave("Three_Toed_Sloth_Species_LW.png", width = 15, height = 7)
