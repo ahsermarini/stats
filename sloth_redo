@@ -63,7 +63,17 @@ table(dat$endangered_status)
 
 # Stacked bar chart
 graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) + 
-  geom_bar(sub_species = 'stack')
+  geom_bar(sub_species = 'stack') +
+  labs(
+    title = "Endangered Status of Sloth Sub-Species" ,
+    subtitle = "Number of Observations per Conservation Status" , 
+    x = "Endangered Status" ,
+    y = "Number of Observations",
+    fill = "Sub Species") +
+  scale_x_discrete(labels = c("Critically Endangered", "Least Concern", "Vulnerable")) +
+  scale_fill_discrete(labels = c("Brown-Throated Sloth", "Hoffman's Two-Toed Sloth",
+                                 "Linnaeus's Two-Toed Sloth", "Maned Three-Toed Sloth",
+                                 "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"))
 
 
 # Box plot graph
