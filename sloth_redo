@@ -65,32 +65,33 @@ table(dat$endangered_status)
 graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) + 
   geom_bar(sub_species = 'stack') +
   labs(
-    title = "Endangered Status of Sloth Subspecies" ,
+    title = "Endangered Status of Sloth Sub-Species" ,
     subtitle = "Number of Observations per Conservation Status" , 
     x = "Endangered Status" ,
     y = "Number of Observations",
-    fill = "Sub Species") +
+    fill = "Subspecies") +
   scale_x_discrete(labels = c("Critically Endangered", "Least Concern", "Vulnerable")) +
-  scale_fill_discrete(labels = c("Brown-Throated Sloth", "Hoffman's Two-Toed Sloth",
-                                 "Linnaeus's Two-Toed Sloth", "Maned Three-Toed Sloth",
-                                 "Pale-Throated Sloth", "Pygmy Three-Toed Sloth")) +
-                                  scale_fill_manual(values = c("dodgerblue3", "tomato1", "gold2", "orchid4", "seagreen3", hotpink1"))
+  scale_fill_manual(labels = c("Brown-Throated Sloth", "Hoffman's Two-Toed Sloth",
+                               "Linnaeus's Two-Toed Sloth", "Maned Three-Toed Sloth",
+                               "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"), values = c("dodgerblue3", "tomato1", "gold2",
+                                            "orchid4", "seagreen3","hotpink1"))
+                                            
 
 
 # Box plot graph comparing the claw length between the two-toed sloth and the three-toed sloth.
 graph_2 <- dat %>% 
   ggplot() +
   geom_boxplot(aes(x = main_species,
-                   y = claw_length,
+                   y = claw_length_cm,
                    fill = main_species)) +
-    labs(
+     labs(
     title = "Claw Length Comparison of Main Species" ,
     subtitle = "Two-Toed Sloth vs. Three-Toed Sloth" , 
     x = "Main Species" ,
     y = "Claw Length (cm)",
     fill = "Main Species") +
-    scale_x_discrete(labels = c("Three-Toed", "Two-Toed")) +
-    scale_fill_manual(labels = c("Three-Toed", "Two-Toed"),
+  scale_x_discrete(labels = c("Three-Toed Sloth", "Two-Toed Sloth")) +
+  scale_fill_manual(labels = c("Three-Toed Sloth", "Two-Toed Sloth"),
                     values = c("dodgerblue3", "brown2"))
                    
 # To filter out the dataset for only the two-toed sloth
@@ -126,31 +127,32 @@ glimpse(dat)
 graph_3a <- data_2t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
-             color = sub_species)) + geom_point() +
+             fill = sub_species)) + 
+  geom_point(color = "black", pch = 21, size = 2, alpha = .5) +
   labs(
-    title = "Two-Toed Sloth Species Length & Weight Distribuition" ,
+    title = "Two-Toed Sloth Species Length & Weight Distribution" ,
     subtitle = "Comparing Hoffman vs. Linnaeus" , 
     x = "Total Length (cm)" ,
     y = "Weight (kg)",
-    fill = "Sub Species") +
-        scale_fill_manual(labels = c("Hoffman's Two-Toed Sloth",
-                                 "Linnaeus's Two-Toed Sloth"),
-                                 values = c("tomato1", "sandybrown"))
+    fill = "Subspecies") +
+  scale_fill_manual(labels = c("Hoffman's Two-Toed Sloth",
+                               "Linnaeus's Two-Toed Sloth"), 
+                    values = c("tomato1", "gold2"))
      
   #make scatter plot for three-toed species length and weight
   graph_3b <- data_3t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
              fill = sub_species)) + 
-             geom_point(color = "black", pch = 21, size = 2, alpha = .5) +
-             scale_y_continuous(breaks = seq(from = 0, to = 9, by = .5)) +
+  geom_point(color = "black", pch = 21, size = 2, alpha = .5) +
+  scale_y_continuous(breaks = seq(from = 0, to = 9, by = .5)) +
   labs(
-    title = "Three-Toed Sloth Species Length & Weight Distribuition" ,
+    title = "Three-Toed Sloth Species Length & Weight Distribution" ,
     subtitle = "Comparison of Three-Toed Sloth Species" , 
     x = "Total Length (cm)" ,
     y = "Weight (kg)",
-    fill = "Sub Species") +
-    scale_fill_manual(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
-                                 "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
-                                 values = c("dodgerblue3", "orchid4", "seagreen3", "hotpink1"))
+    fill = "Subspecies") +
+  scale_fill_manual(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
+                               "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
+                    values = c("dodgerblue3", "orchid4", "seagreen3", "hotpink1"))
     
