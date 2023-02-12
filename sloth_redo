@@ -82,7 +82,7 @@ graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) +
 graph_2 <- dat %>% 
   ggplot() +
   geom_boxplot(aes(x = main_species,
-                   y = claw_length_cm,
+                   y = claw_length,
                    fill = main_species)) +
     labs(
     title = "Claw Length Comparison of Main Species" ,
@@ -131,8 +131,8 @@ graph_3a <- data_2t %>%
     title = "Two-Toed Sloth Species Length & Weight Distribuition" ,
     subtitle = "Comparing Hoffman vs. Linnaeus" , 
     x = "Total Length (cm)" ,
-    y = "Weight (kg)"
-  )
+    y = "Weight (kg)") +
+    scale_fill_manual(values = c("orchid4", "palevioletred"))
 
  
   #make scatter plot for three-toed species length and weight
@@ -146,6 +146,7 @@ graph_3a <- data_2t %>%
     title = "Three-Toed Sloth Species Length & Weight Distribuition" ,
     subtitle = "Comparison of Three-Toed Sloth Species" , 
     x = "Total Length (cm)" ,
-    y = "Weight (kg)"
-  )
+    y = "Weight (kg)") +
+    scale_fill_manual(values = c("dodgerblue3","lightskyblue1",
+    "royalblue4", "cyan3"))
   
