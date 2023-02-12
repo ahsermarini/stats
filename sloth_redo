@@ -94,36 +94,36 @@ graph_2 <- dat %>%
   scale_fill_manual(labels = c("Three-Toed Sloth", "Two-Toed Sloth"),
                     values = c("dodgerblue3", "brown2"))
                    
-# To filter out the dataset for only the two-toed sloth
+# To filter out the dataset for only the two-toed sloth species
 data_2t <- dat %>%
   filter(main_species == "two_toed")
 
 # Check the new dataframe to confirm
 glimpse(data_2t)
 
-# To filter out the dataset for only three- toed sloth
+# To filter out the dataset for only three-toed sloth species
 data_3t <- dat %>%
   filter(main_species == "three_toed")
 
-#check the new dataframe to confirm
+# Check the new dataframe to confirm
 glimpse(data_3t)
 
-# to get a summary of the central tendencies for each main species and their claw lengths
+# To get a summary of the central tendencies for each main species and their claw lengths
 summary(data_2t$claw_length_cm)
 summary(data_3t$claw_length_cm)
 
                   
-#add an additional column to the dataset by combining the size and tail length columns
+# Add an additional column to the dataset by combining the size and tail length columns
 total_length_cm <- dat$size_cm + dat$tail_length_cm
 
 total_length_cm
 
-#add the new column to the dataset
+# Add the new column to the dataset
 dat <- cbind(dat, total_length_cm)
 
 glimpse(dat)
 
-#make scatter plot for two-toed species length and weight
+# Scatter plot for two-toed species comparing length and weight
 graph_3a <- data_2t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
@@ -138,8 +138,8 @@ graph_3a <- data_2t %>%
   scale_fill_manual(labels = c("Hoffman's Two-Toed Sloth",
                                "Linnaeus's Two-Toed Sloth"), 
                     values = c("tomato1", "gold2"))
-     
-  #make scatter plot for three-toed species length and weight
+                   
+ # Scatter plot for three-toed species length and weight
   graph_3b <- data_3t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
