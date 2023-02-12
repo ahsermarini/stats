@@ -28,10 +28,10 @@ tibble(dat)
 # and assign a new name to the new data set
 dat <- select(data, -X)
 
-#confirm that the Index column has been removed
+# Confirm that the Index column has been removed
 glimpse(dat)
 
-#rename some of the variables
+# Rename some of the variables
 dat <- rename(sloth_data, "endangered_status" = "endangered",
                      "main_species" = "specie", "sub_species" = "sub_specie")
 
@@ -61,11 +61,11 @@ which(duplicated(dat))
 # We want to check the absolute frequency of the observations in the endangered_status column
 table(dat$endangered_status)
 
-# Stacked bar chart
+# Stacked bar chart analyzing the conservation status of sloth subspecies
 graph_1 <- ggplot(dat, aes(fill = sub_species, x = endangered_status)) + 
   geom_bar(sub_species = 'stack') +
   labs(
-    title = "Endangered Status of Sloth Sub-Species" ,
+    title = "Endangered Status of Sloth Subspecies" ,
     subtitle = "Number of Observations per Conservation Status" , 
     x = "Endangered Status" ,
     y = "Number of Observations",
