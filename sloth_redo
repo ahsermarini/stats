@@ -132,7 +132,8 @@ graph_3a <- data_2t %>%
     title = "Two-Toed Sloth Species Length & Weight Distribuition" ,
     subtitle = "Comparing Hoffman vs. Linnaeus" , 
     x = "Total Length (cm)" ,
-    y = "Weight (kg)") +
+    y = "Weight (kg)",
+    fill = "Sub Species") +
     scale_x_discrete(labels = c( "Hoffman's Two-Toed Sloth",
                                  "Linnaeus's Two-Toed Sloth") +
     scale_fill_manual(labels = c("Hoffman's Two-Toed Sloth",
@@ -150,7 +151,8 @@ graph_3a <- data_2t %>%
     title = "Three-Toed Sloth Species Length & Weight Distribuition" ,
     subtitle = "Comparison of Three-Toed Sloth Species" , 
     x = "Total Length (cm)" ,
-    y = "Weight (kg)") +
+    y = "Weight (kg)",
+    fill = "Sub Species") +
     scale_fill_discrete(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
                                  "Pale-Throated Sloth", "Pygmy Three-Toed Sloth")) +
     scale_fill_manual(values = c("dodgerblue3",
