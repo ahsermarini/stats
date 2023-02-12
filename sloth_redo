@@ -1,3 +1,6 @@
+# R project - Sloth Species Comparison 
+#Group: Antonella Mastropierro, Allison Sermarini, Giulia Lucaccioni
+
 # Install packages
 install.packages("tidyverse")
 install.packages("GGally")
