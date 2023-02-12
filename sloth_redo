@@ -151,6 +151,7 @@ graph_3a <- data_2t %>%
     scale_x_discrete(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
                                  "Pale-Throated Sloth", "Pygmy Three-Toed Sloth" )) +
     scale_fill_manual(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
-                                 "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"), values = c("dodgerblue3","lightskyblue1",
-    "royalblue4", "cyan3"))
+                                 "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
+                                 values = c("dodgerblue3","lightskyblue1",
+                                 "royalblue4", "cyan3"))
   
