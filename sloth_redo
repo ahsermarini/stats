@@ -151,8 +151,7 @@ graph_3a <- data_2t %>%
     x = "Total Length (cm)" ,
     y = "Weight (kg)",
     fill = "Sub Species") +
-    scale_fill_discrete(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
-                                 "Pale-Throated Sloth", "Pygmy Three-Toed Sloth")) +
-    scale_fill_manual(values = c("dodgerblue3",
-    "orchid4", "seagreen3", "hotpink1"))
+    scale_fill_manual(labels = c("Brown-Throated Sloth", "Maned Three-Toed Sloth",
+                                 "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
+                                 values = c("dodgerblue3", "orchid4", "seagreen3", "hotpink1"))
     
