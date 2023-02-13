@@ -1,9 +1,20 @@
 # R project - Sloth Species and Conservation Stauts Analysis 
 # Group: Antonella Mastropierro, Allison Sermarini, Giulia Lucaccioni
 
-# Here are the following objectives for the project:
-# What is the number of sloth species that are in each conservation status
-# Which subspecies are the most endangered
+# The data set we retrieved from "Kaggle" is data compiled by "Bertie"
+# The data set is composed of various information regarding two sloth species: two-toed sloths and three-toed sloths
+# The information included in the data set includes the following variables:
+        # Sloth Main Species: The main species of the sloths: two-toed or three-toed (qualitative - character)
+        # Sloth Subspecies:The subspecies of sloths within each of the main species (qualitative - character)
+        # Endangered Status: The endangered status category which each sloth observation falls into (qualitative - numeric)
+        # Claw Length (cm): The claw length of each sloth observation in centimeters (quantitative - numeric)
+        # Size (cm):  The combined head and body size of each sloth observation in centimeters (quantitative - numeric)
+        # Tail Length (cm): The tail length of each sloth observation in centimeters (quantitative - numeric)
+        # Weight (kg): The weight of each sloth observation in kilograms (quantitative - numeric)
+
+# Based on this data set we will be completing the following objectives:
+# What is the absolute frequency distribution of the observations in regards to endangered status
+# Which of the main species are the most endangered
 # What is the average claw size for each main species and which of the two main species have the longer claws on average
 # What is the relationship between the subspecies and weight/size distribution for for each of the two main species
 
