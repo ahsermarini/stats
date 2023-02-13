@@ -166,20 +166,10 @@ dev.off()
 
 # Pie chart of total observations of each subspecies
 # Changing titles, colors, and labels for the pie chart
-dat %>% 
-  ggplot() +
-  geom_boxplot(aes(x = main_species,
-                   y = claw_length_cm,
-                   fill = main_species)) +
-  labs(
-    title = "" ,
-    subtitle = "" , 
-    x = "Main Species" ,
-    y = "Claw Length (cm)",
-    fill = "Main Species") +
-  scale_x_discrete(labels = c("Three-Toed Sloth", "Two-Toed Sloth")) +
-  scale_fill_manual(labels = c("Three-Toed Sloth", "Two-Toed Sloth"),
-                    values = c("dodgerblue3", "brown2"))
+
+ggplot(dat, aes(x = "", y = sub_species, fill = sub_species)) + 
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar("y")
 
 
 # Box plot graph comparing the claw length between the two-toed sloth and the three-toed sloth.
