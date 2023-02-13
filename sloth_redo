@@ -5,12 +5,26 @@
 # The data set is composed of various information regarding two sloth species: two-toed sloths and three-toed sloths
 # The information included in the data set includes the following variables:
         # Sloth Main Species: The main species of the sloths: two-toed or three-toed (qualitative - character)
+                # Original Data Set Name: specie
+                # Modified Name: main_species
         # Sloth Subspecies:The subspecies of sloths within each of the main species (qualitative - character)
+                # Original Data Set Name: sub_specie
+                # Modified Name: sub_species
         # Endangered Status: The endangered status category which each sloth observation falls into (qualitative - numeric)
+                # Original Data Set Name: endangered
+                # Modified Name: endangered_status
         # Claw Length (cm): The claw length of each sloth observation in centimeters (quantitative - numeric)
+               # Original Data Set Name: claw_length_cm
+               # Modified Name: claw_length_cm 
         # Size (cm):  The combined head and body size of each sloth observation in centimeters (quantitative - numeric)
+               # Orginial Data Set Name: size_cm
+               # Modified Name: size_cm 
         # Tail Length (cm): The tail length of each sloth observation in centimeters (quantitative - numeric)
+               # Orginial Data Set Name: tail_length_cm
+               # Modified Name: tail_length_cm 
         # Weight (kg): The weight of each sloth observation in kilograms (quantitative - numeric)
+               # Orginial Data Set Name: weight_kg
+               # Modified Name: weight_kg
 
 # Based on this data set we will be completing the following objectives:
 # What is the absolute frequency distribution of the observations in regards to endangered status
