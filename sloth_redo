@@ -131,38 +131,32 @@ str(dat)
 # Show the table version of the data set
 tibble(dat)
 
-# Stacked bar chart analyzing the conservation status of sloth subspecies
-# Changing titles, colors, and labels for the bar chart 
-ggplot(dat, aes(fill = sub_species, x = endangered_status)) + 
-  geom_bar(sub_species = 'stack') +
-  labs(
-    title = "Endangered Status of Sloth Subspecies" ,
-    subtitle = "Number of Observations per Conservation Status" , 
+# Now that we have the modified data set, we want to complete our objectives
+# Objective 1: What is the absolute frequency distribution of the observations in regards to endangered status
+# In order to complete this objective, we want to make a
+# Univariate bar chart analyzing the conservation status of sloth species
+# We want to make modifications to the graph to make it appropriate by
+# Changing the title and subtitle and the axes labels for the bar chart 
+ggplot(data = dat) + 
+  geom_bar(aes(x = endangered_status)) +
+    labs(
+    title = "Endangered Status of Sloth Species" ,
+    subtitle = "Number of Observations per Endangered Status" , 
     x = "Endangered Status" ,
-    y = "Number of Observations",
-    fill = "Subspecies") +
+    y = "Number of Observations") +
   scale_x_discrete(labels = c("Least Concern", "Vulnerable", "Critically Endangered")) +
-  scale_fill_manual(labels = c("Brown-Throated Sloth", "Hoffman's Two-Toed Sloth",
-                               "Linnaeus's Two-Toed Sloth", "Maned Three-Toed Sloth",
-                               "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
-                    values = c("dodgerblue3", "tomato1", "gold2",
-                                            "orchid4", "seagreen3","hotpink1"))
+  theme_bw()
 
-# From this graph we are able to determine which subspecies are in which endangered status
-# In the least concern status the following four subspecies are listed: , Hoffman's Two-Toed Sloth
-          # Brown-Throated Sloth
-          # Hoffman's Two-Toed Sloth
-          # Linnaeus's Two-Toed Sloth
-          # Pale-Throated Sloth
-# In the vulnerable status the following subspecies is listed:
-          # Maned Three-Toed Sloth
-# In the critically endangered status the following subspecies is listed:
-          # Pygmy Three-Toed Sloth
-# Both two-toed sloth species are listed as critically endangered, whereas the three-toed species vary
+# From this graph we are able to determine the number of observations in each endangered status
+# It is clear that the greatest number of sloth observations are in the least_concern status
+# While the fewest number of observations are in the critically_endangered status
 
-# We want to check the absolute frequency of the observations in the endangered_status column
+# Another method of completing Objective 1 is to simply make a frequency distribution table showing
+# The absolute frequencies of the observations in the endangered_status column
 table(dat$endangered_status)
-# From the table we see the majority of observations are listed under least concern (4390)
+# This table shows the exact number of observations in each endangerment status
+# From the table we see the majority of sloth observations are listed under least_concern (4390)
+# With only 73 observations within the critically_endangered status
 
 # Save the graph
 ggsave("Endangered_Status_Bar_Chart.png", width = 10, height = 10)
