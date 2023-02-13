@@ -170,13 +170,15 @@ dev.off()
 ggplot(data = dat) +
   geom_col(aes(x = "", y = "", fill = sub_species)) +
   coord_polar(theta = "y") +
-  labs(
-    title = "Subspecies Distribution" ,
+  labs( title = "Subspecies Distribution" ,
     subtitle = "Percentage of Each Subspecies Relative to Total Observations" , 
     x = NULL ,
     y = NULL,
-    fill = "Subspecies"
-  )
+    fill = "Subspecies") +
+  scale_fill_manual(labels = c("Brown-Throated Sloth", "Hoffman's Two-Toed Sloth", "Linnaeus's Two-Toed Sloth", "Maned Three-Toed Sloth",
+                               "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
+                    values = c("dodgerblue3", "tomato1", "gold2", "orchid4", "seagreen3", "hotpink1")) +
+  theme_void()
   
 # Save the graph
 ggsave("Subspecies_Pie_Chart.png", width = 10, height = 10)
