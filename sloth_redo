@@ -181,6 +181,8 @@ dat <- cbind(dat, total_length_cm)
 # Check for new column in the dataset
 glimpse(dat)
 
+# BAR TO CREATE analyizing total length observations
+
 # To filter out the data set for only the two-toed sloth species
 data_2t <- dat %>%
   filter(main_species == "two_toed")
