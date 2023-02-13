@@ -171,6 +171,37 @@ ggplot(dat, aes(x = "", y = sub_species, fill = sub_species)) +
   geom_bar(width = 1, stat = "identity") +
   coord_polar("y")
 
+# Save the graph
+ggsave("Endangered_Status_Bar_Chart.png", width = 10, height = 10)
+
+# Close the graph
+dev.off()
+
+# Add an additional column to the dataset by combining the size and tail length columns
+total_length_cm <- dat$size_cm + dat$tail_length_cm
+
+# Confirm the sum of the two variables
+total_length_cm
+
+# Add the new column to the dataset
+dat <- cbind(dat, total_length_cm)
+
+# Check for new column in the dataset
+glimpse(dat)
+
+# To filter out the data set for only the two-toed sloth species
+data_2t <- dat %>%
+  filter(main_species == "two_toed")
+
+# Check the new dataframe to confirm
+glimpse(data_2t)
+
+# To filter out the dataset for only three-toed sloth species
+data_3t <- dat %>%
+  filter(main_species == "three_toed")
+
+# Check the new dataframe to confirm
+glimpse(data_3t)
 
 # Box plot graph comparing the claw length between the two-toed sloth and the three-toed sloth.
 # Changing titles, colors, and labels for the box plot 
@@ -201,32 +232,6 @@ ggsave("Claw_Length_Boxplot.png", width = 10, height = 10)
 
 # Close the graph
 dev.off()
-
-# Add an additional column to the dataset by combining the size and tail length columns
-total_length_cm <- dat$size_cm + dat$tail_length_cm
-
-# Confirm the sum of the two variables
-total_length_cm
-
-# Add the new column to the dataset
-dat <- cbind(dat, total_length_cm)
-
-# Check for new column in the dataset
-glimpse(dat)
-
-# To filter out the data set for only the two-toed sloth species
-data_2t <- dat %>%
-  filter(main_species == "two_toed")
-
-# Check the new dataframe to confirm
-glimpse(data_2t)
-
-# To filter out the dataset for only three-toed sloth species
-data_3t <- dat %>%
-  filter(main_species == "three_toed")
-
-# Check the new dataframe to confirm
-glimpse(data_3t)
 
 # Scatter plot for two-toed species comparing length and weight
 # Changing titles, colors, and labels for the scatter plot
