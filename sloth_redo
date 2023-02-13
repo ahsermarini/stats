@@ -1,43 +1,44 @@
 # R project - Sloth Species and Conservation Stauts Analysis 
 # Group: Antonella Mastropierro, Allison Sermarini, Giulia Lucaccioni
 
+
 # The data set we retrieved from "Kaggle" is data compiled by "Bertie"
 # The data set is composed of various information regarding two sloth species: two-toed sloths and three-toed sloths
 # The information included in the data set includes the following variables:
-        # Index: the number of observations
-                # Original Variable Name: Index
-                # Modified Variable Name: column removed
-        # Sloth Main Species: The main species of the sloths: two-toed or three-toed (qualitative - character)
-                # Original Variable Name: specie
-                # Modified Variable Name: main_species
-        # Sloth Subspecies:The subspecies of sloths within each of the main species (qualitative - character)
-                # Original Variable Name: sub_specie
-                # Modified Variable Name: sub_species
-        # Endangered Status: The endangered status category which each sloth observation falls into (qualitative - numeric)
-                # Original Variable Name: endangered
-                # Modified Variable Name: endangered_status
-        # Claw Length (cm): The claw length of each sloth observation in centimeters (quantitative - numeric)
-               # Original Variable Name: claw_length_cm
-               # Modified Variable Name: claw_length_cm 
-        # Size (cm):  The combined head and body size of each sloth observation in centimeters (quantitative - numeric)
-               # Orginial Variable Name: size_cm
-               # Modified Variable Name: size_cm 
-        # Tail Length (cm): The tail length of each sloth observation in centimeters (quantitative - numeric)
-               # Orginial Variable Name: tail_length_cm
-               # Modified Variable Name: tail_length_cm 
-        # Weight (kg): The weight of each sloth observation in kilograms (quantitative - numeric)
-               # Orginial Variable Name: weight_kg
-               # Modified Variable Name: weight_kg
-        # Total Length (cm): The total lenght of each sloth obersvation
-               # This variable is not in the original data set, only in the modifed data set
-               # The variable combines the size_cm and tail_length_cm variables
-               # Modified Variable Name: total_length_cm
+# Index: the number of observations
+# Original Variable Name: Index
+# Modified Variable Name: column removed
+# Sloth Main Species: The main species of the sloths: two-toed or three-toed (qualitative - character)
+# Original Variable Name: specie
+# Modified Variable Name: main_species
+# Sloth Subspecies:The subspecies of sloths within each of the main species (qualitative - character)
+# Original Variable Name: sub_specie
+# Modified Variable Name: sub_species
+# Endangered Status: The endangered status category which each sloth observation falls into (qualitative - numeric)
+# Original Variable Name: endangered
+# Modified Variable Name: endangered_status
+# Claw Length (cm): The claw length of each sloth observation in centimeters (quantitative - numeric)
+# Original Variable Name: claw_length_cm
+# Modified Variable Name: claw_length_cm 
+# Size (cm):  The combined head and body size of each sloth observation in centimeters (quantitative - numeric)
+# Orginial Variable Name: size_cm
+# Modified Variable Name: size_cm 
+# Tail Length (cm): The tail length of each sloth observation in centimeters (quantitative - numeric)
+# Orginial Variable Name: tail_length_cm
+# Modified Variable Name: tail_length_cm 
+# Weight (kg): The weight of each sloth observation in kilograms (quantitative - numeric)
+# Orginial Variable Name: weight_kg
+# Modified Variable Name: weight_kg
+# Total Length (cm): The total lenght of each sloth obersvation
+# This variable is not in the original data set, only in the modifed data set
+# The variable combines the size_cm and tail_length_cm variables
+# Modified Variable Name: total_length_cm
 
 # Based on this data set we will be completing the following objectives:
-# What is the absolute frequency distribution of the observations in regards to endangered status
-# Which of the main species are the most endangered
-# What is the average claw size for each main species and which of the two main species have the longer claws on average
-# What is the relationship between the subspecies and weight/size distribution for for each of the two main species
+# 1. What is the absolute frequency distribution of the observations in regards to endangered status
+# 2. What is the distribution of observations within each subspecies in the data set
+# 3. What is the average claw size for each main species and which of the two main species have the longer claws on average
+# 4. What is the relationship between the subspecies and weight/size distribution for for each of the two main species
 
 # Install packages
 install.packages("tidyverse")
@@ -137,6 +138,7 @@ tibble(dat)
 # Univariate bar chart analyzing the conservation status of sloth species
 # We want to make modifications to the graph to make it appropriate by
 # Changing the title and subtitle and the axes labels for the bar chart 
+
 ggplot(data = dat) + 
   geom_bar(aes(x = endangered_status)) +
     labs(
@@ -164,22 +166,32 @@ ggsave("Endangered_Status_Bar_Chart.png", width = 10, height = 10)
 # Close the graph
 dev.off()
 
-# Pie chart of total observations of each subspecies
-# Changing titles, colors, and labels for the pie chart
+# Objective 2: What is the distribution of observations within each subspecies in the data set
+# In order to complete this objective, we want to make a
+# Univariate pie chart analyzing the percent frequency of the sloth subspecies
+# We want to make modifications to the graph to make it appropriate by
+# Changing the title, subtitle, and colors for the pie chart
 
 ggplot(data = dat) +
   geom_col(aes(x = "", y = "", fill = sub_species)) +
   coord_polar(theta = "y") +
   labs( title = "Subspecies Distribution" ,
-    subtitle = "Percentage of Each Subspecies Relative to Total Observations" , 
-    x = NULL ,
-    y = NULL,
-    fill = "Subspecies") +
+        subtitle = "Percentage of Each Subspecies Relative to Total Observations" , 
+        x = NULL ,
+        y = NULL,
+        fill = "Subspecies") +
   scale_fill_manual(labels = c("Brown-Throated Sloth", "Hoffman's Two-Toed Sloth", "Linnaeus's Two-Toed Sloth", "Maned Three-Toed Sloth",
                                "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
                     values = c("dodgerblue3", "tomato1", "gold2", "orchid4", "seagreen3", "hotpink1")) +
   theme_void()
-  
+
+# The pie chart represents the subspecies in terms of their relative frequencies
+# With the pie chart, we can see the amount of observations in each subspecies in the data set
+# Relative to each other
+
+# We are able to obtain the percent frequencies in a table format 
+table(dat$sub_species) / length(dat$sub_species) * 100
+
 # Save the graph
 ggsave("Subspecies_Pie_Chart.png", width = 10, height = 10)
 
@@ -212,8 +224,14 @@ data_3t <- dat %>%
 # Check the new dataframe to confirm
 glimpse(data_3t)
 
-# Box plot graph comparing the claw length between the two-toed sloth and the three-toed sloth.
-# Changing titles, colors, and labels for the box plot 
+# Objective 3: What is the average claw size for each main species
+# and which of the two main species have the longer claws on average
+# In order to complete this objective, we want to make a
+# Bivariate box plot analyzing the central tendencies of the two main species 
+# in relation to their claw length
+# We want to make modifications to the graph to make it appropriate by
+# Changing the title, subtitle, and axes for the box plot
+
 dat %>% 
   ggplot() +
   geom_boxplot(aes(x = main_species,
@@ -229,12 +247,15 @@ dat %>%
   scale_fill_manual(labels = c("Three-Toed Sloth", "Two-Toed Sloth"),
                     values = c("dodgerblue3", "brown2"))
 
-# From the graph, we can see that the range of the Two-Toed Sloth is larger than the range of the Three-Toed Sloth
+# From the graph, we can see that the range of the Two-Toed Sloth
+# is larger than the range of the Three-Toed Sloth
 
 # To get a summary of the central tendencies for each main species and their claw lengths
 summary(data_2t$claw_length_cm)
 summary(data_3t$claw_length_cm)
 # Comparing the central tendencies of the main species, the average claw length is about the same
+# Two-Toed Average Claw Length = 7.24 cm
+# Three-Toed Average Claw Length = 7.49 cm
 
 # Save the graph
 ggsave("Claw_Length_Boxplot.png", width = 10, height = 10)
@@ -242,8 +263,16 @@ ggsave("Claw_Length_Boxplot.png", width = 10, height = 10)
 # Close the graph
 dev.off()
 
-# Scatter plot for two-toed species comparing length and weight
-# Changing titles, colors, and labels for the scatter plot
+# Objective 4: What is the relationship between the subspecies and total length and weight
+# distribution for for each of the two main species
+# In order to complete this objective, we want to make a
+# bivariate scatter plot analyzing the distribution of weight and length of each 
+# main species
+# We want to make modifications to the graph to make it appropriate by
+# Changing the title, subtitle, and axes for the box plot
+
+# The first graph displays the total length and weight distribution of the
+# two-toed sloth species
 data_2t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
@@ -267,8 +296,8 @@ ggsave("Two_Toed_Sloth_Species_LW.png", width = 15, height = 7)
 # Close the graph
 dev.off()
 
-# Scatter plot for three-toed species length and weight
-# Changing titles, colors, and labels for the scatter plot
+# The first graph displays the total length and weight distribution of the
+# three-toed sloth species
 data_3t %>% 
   ggplot(aes(x = total_length_cm,
              y = weight_kg,
@@ -285,15 +314,19 @@ data_3t %>%
                                "Pale-Throated Sloth", "Pygmy Three-Toed Sloth"),
                     values = c("dodgerblue3", "orchid4", "seagreen3", "hotpink1"))
 
-# From this graph, we can see that there is no significant difference between the length and weight distributions of the following subspecies:
+# From this graph, we can see that there is no significant difference between the 
+# length and weight distributions of the following subspecies:
           # Brown-Throated Sloth
           # Maned Three-Toed Sloth
-# From this graph, we can see that there is no significant difference between the length and weight distributions of the following subspecies:
+# From this graph, we can see that there is no significant difference between the 
+# length and weight distributions of the following subspecies:
           # Pale-Throated Sloth
           # Pygmy Three-Toed Sloth
-# However, when comparing the Brown-Throated and Maned Three-Toed species with the Pale-Throat and Pygmy species,
+# However, when comparing the Brown-Throated and Maned Three-Toed species with the 
+# Pale-Throat and Pygmy species,
 # We can observe that all four subspecies have about the same weight
-# However, the Pygmy and Pale-Throated subspecies generally have a smaller size than the Brown-Throated and Maned Three-Throated subspecies
+# However, the Pygmy and Pale-Throated subspecies generally have a smaller size 
+# than the Brown-Throated and Maned Three-Throated subspecies
 
 # Save the graph
 ggsave("Three_Toed_Sloth_Species_LW.png", width = 15, height = 7)
@@ -301,3 +334,25 @@ ggsave("Three_Toed_Sloth_Species_LW.png", width = 15, height = 7)
 # Close the graph
 dev.off()
 
+# Correlation Test and Hypotheses
+# We want to run a correlation test in order to determine whether or not the
+# total length is dependent on the weight of the sloth species
+# We will conduct two hypotheses tests: one for each of the two main species  
+
+# First Hypothesis Test: Two-Toed Sloth
+# H0: no correlation
+# H1: positive correlation -> total_length_cm ~ weight_kg
+cor.test(data_2t$total_length_cm,
+         data_2t$weight_kg)
+
+# The test returned a correlation of 0.12 indicating that total length does not behave according to weight
+# Therefore, we do not reject H0, the null hypothesis
+
+# First Hypothesis Test: Three-Toed Sloth
+# H0: no correlation
+# H1: positive correlation -> total_length_cm ~ weight_kg
+cor.test(data_3t$total_length_cm,
+         data_3t$weight_kg)
+
+# The test returned a correlation of 0.16 indicating that total length does not behave according to weight
+# Therefore, we do not reject H0, the null hypothesis
