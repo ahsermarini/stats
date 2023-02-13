@@ -167,12 +167,19 @@ dev.off()
 # Pie chart of total observations of each subspecies
 # Changing titles, colors, and labels for the pie chart
 
-ggplot(dat, aes(x = "", y = sub_species, fill = sub_species)) + 
-  geom_bar(width = 1, stat = "identity") +
-  coord_polar("y")
-
+ggplot(data = dat) +
+  geom_col(aes(x = "", y = "", fill = sub_species)) +
+  coord_polar(theta = "y") +
+  labs(
+    title = "Subspecies Distribution" ,
+    subtitle = "Percentage of Each Subspecies Relative to Total Observations" , 
+    x = NULL ,
+    y = NULL,
+    fill = "Subspecies"
+  )
+  
 # Save the graph
-ggsave("Endangered_Status_Bar_Chart.png", width = 10, height = 10)
+ggsave("Subspecies_Pie_Chart.png", width = 10, height = 10)
 
 # Close the graph
 dev.off()
