@@ -138,6 +138,23 @@ ggsave("Endangered_Status_Bar_Chart.png", width = 10, height = 10)
 # Close the graph
 dev.off()
 
+# Pie chart of total observations of each subspecies
+# Changing titles, colors, and labels for the pie chart
+dat %>% 
+  ggplot() +
+  geom_boxplot(aes(x = main_species,
+                   y = claw_length_cm,
+                   fill = main_species)) +
+  labs(
+    title = "" ,
+    subtitle = "" , 
+    x = "Main Species" ,
+    y = "Claw Length (cm)",
+    fill = "Main Species") +
+  scale_x_discrete(labels = c("Three-Toed Sloth", "Two-Toed Sloth")) +
+  scale_fill_manual(labels = c("Three-Toed Sloth", "Two-Toed Sloth"),
+                    values = c("dodgerblue3", "brown2"))
+
 
 # Box plot graph comparing the claw length between the two-toed sloth and the three-toed sloth.
 # Changing titles, colors, and labels for the box plot 
@@ -180,8 +197,6 @@ dat <- cbind(dat, total_length_cm)
 
 # Check for new column in the dataset
 glimpse(dat)
-
-# BAR TO CREATE analyizing total length observations
 
 # To filter out the data set for only the two-toed sloth species
 data_2t <- dat %>%
